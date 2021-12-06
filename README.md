@@ -2,8 +2,6 @@
 
 This crate provides the sql! macro for building fully type checked SQL statements inside your Rust code using roughly SQL compatible syntax. Fails at compile time if sql parser fails to parse your query
 
-Intended usage: code generation
-
 ## Quick Preview
 
 ```rust

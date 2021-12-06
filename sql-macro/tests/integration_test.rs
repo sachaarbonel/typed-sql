@@ -1,8 +1,8 @@
-use sql_macro::my_macro;
+use sql_macro::sql;
 
 #[test]
 fn test_add() {
-    let value = my_macro!(CREATE TABLE Persons (
+    let value = sql!(CREATE TABLE Persons (
         PersonID int,
         LastName varchar(255),
         FirstName varchar(255),

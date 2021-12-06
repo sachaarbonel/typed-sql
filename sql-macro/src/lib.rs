@@ -2,6 +2,7 @@ use proc_macro::TokenStream;
 // use proc_macro2::TokenStream;
 use quote::quote;
 use syn::{parse_macro_input, LitStr};
+use nom_sql::sql_query;
 
 #[proc_macro]
 pub fn my_macro(input: TokenStream) -> TokenStream {
@@ -11,24 +12,16 @@ pub fn my_macro(input: TokenStream) -> TokenStream {
 
     // get value of the string literal.
     let str_value = input.value();
-
+    let res  = sql_query(str_value.as_bytes());
+    let res_unwrap =  res.unwrap().1.to_string();
+    
     // do something with value...
-    let str_value = str_value.to_uppercase();
+    // let str_value = str_value.to_uppercase();
 
     // generate code, include `str_value` variable (automatically encodes
     // `String` as a string literal in the generated code)
     (quote! {
-        #str_value
+        #res_unwrap
     })
     .into()
-}
-
-#[cfg(test)]
-mod tests {
-    use crate::my_macro;
-
-    #[test]
-    fn it_works() {
-        assert_eq!(my_macro!("hahaha"), "hahaha");
-    }
 }

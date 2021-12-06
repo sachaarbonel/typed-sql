@@ -8,10 +8,10 @@ use nom_sql::sql_query;
 pub fn my_macro(input: TokenStream) -> TokenStream {
     // macro input must be `LitStr`, which is a string literal.
     // if not, a relevant error message will be generated.
-    let input = parse_macro_input!(input as LitStr);
+    // let input = parse_macro_input!(input as LitStr);
 
     // get value of the string literal.
-    let str_value = input.value();
+    let str_value = input.to_string();
     let res  = sql_query(str_value.as_bytes());
     let res_unwrap =  res.unwrap().1.to_string();
     

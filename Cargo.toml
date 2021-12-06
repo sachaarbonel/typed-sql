@@ -2,4 +2,5 @@
 
 members = [
     "nom-sql",
+    "sql-macro"
 ]
